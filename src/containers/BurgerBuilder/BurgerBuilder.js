@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
 import Aux from '../../hoc/Aux';
-import Burger from './Burger/Burger';
-import BuildControls from './BuildControls/BuildControls';
+import Burger from '../../components/Burger/Burger';
+import BuildControls from '../../components/BuildControls/BuildControls';
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../components/OrderSummary/OrderSummary';
+
 const INGREDIENT_PRICES={
     meat:3,
     bacon:2,
     salad:1,
     cheese:1    
 };
-class BurgerBuilder extends Component{
-    
+class BurgerBuilder extends Component{   
     state = {
         ingredients: {
             meat:0,
@@ -20,6 +22,7 @@ class BurgerBuilder extends Component{
         total: 4,
         purchaseable: false
     }
+    
     updatePurchaseState(ingredients){
         const sum = Object.keys(ingredients)
             .map(key => ingredients[key])
@@ -73,6 +76,9 @@ class BurgerBuilder extends Component{
         }
         return (
             <Aux>
+                <Modal>
+                    <OrderSummary ingredients={this.state.ingredients}/>
+                </Modal>
               <Burger ingredients={this.state.ingredients} />
               <BuildControls 
                     addIngredient={this.addIngredientHandler} 
