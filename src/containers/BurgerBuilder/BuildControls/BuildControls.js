@@ -12,6 +12,7 @@ const buildControls = (props) => {
     
     return ( 
         <div className={styles.BuildControls}>
+            <p>Total price: <strong>${props.total}</strong></p>
             {controls.map(control => 
                 <BuildControl 
                     onClickMore={props.addIngredient.bind(this, control.type)}
@@ -21,6 +22,9 @@ const buildControls = (props) => {
                     disabled={props.disabled[control.type]}
                 />)
             }
+            <button 
+                disabled={!props.purchaseable} 
+                className={styles.OrderButton}>Check Out</button>
         </div>
      );
 }
