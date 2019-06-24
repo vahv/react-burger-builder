@@ -16,8 +16,9 @@ const orderSummary = (props) => {
             <ul>
                 {jsxIngredients}
             </ul>
-            <Button btnType={'Success'} clicked={props.continue}>Checkout</Button>
+            <p><strong>Total price: {props.price.toFixed(2)}</strong></p>
             <Button btnType={'Danger'} clicked={props.cancel}>Cancel</Button>
+            <Button btnType={'Success'} clicked={props.continue}>Checkout</Button>
         </Aux>
      );
 }
