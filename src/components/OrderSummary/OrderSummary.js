@@ -1,12 +1,13 @@
 import React from 'react';
 import Aux from '../../hoc/Aux';
+import Button from '../UI/Button/Button';
 
 const orderSummary = (props) => {
-    const jsxIngredients = Object.keys(props.ingredients)
+    const jsxIngredients = Object.keys(props.ingredients).filter(key => props.ingredients[key] > 0)
             .map(key => 
                 <li key={key}>
-                    <span style={{textTransform: "capitalize"}}>{key}:</span> 
-                    {props.ingredients[key]}
+                    <span style={{textTransform: "capitalize"}}>{key}</span> 
+                    : {props.ingredients[key]}
                 </li>);
     return ( 
         <Aux>
@@ -15,7 +16,8 @@ const orderSummary = (props) => {
             <ul>
                 {jsxIngredients}
             </ul>
-            <button>Continue to Checkout</button>
+            <Button btnType={'Success'} clicked={props.continue}>Checkout</Button>
+            <Button btnType={'Danger'} clicked={props.cancel}>Cancel</Button>
         </Aux>
      );
 }
